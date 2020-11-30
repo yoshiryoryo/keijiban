@@ -15,7 +15,7 @@ class postController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('posts.index', ['posts'=>$posts]);
+        return view('posts.index', ['posts' => $posts]);
     }
 
     /**
@@ -57,9 +57,9 @@ class postController extends Controller
     public function show(post $post)
     {
         $user_id = $post->user_id;
-        $user = DB::table('users')->where('id', $user_id)->first();
+        $user = DB::table('users')->where('id', $usr_id)->first();
 
-        return view('posts.detail', ['post' => $post, 'user' => $user]);
+        return view('posts.detail',['post' => $post,'user' => $user]);
     }
 
     /**
@@ -68,11 +68,11 @@ class postController extends Controller
      * @param  \App\post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(post $post)
+    public function edit($id)
     {
-        $post = \App\Post::findOrFail($id);
+        $post = Post::findOrFail($id);
 
-        return view('post.edit', ['post' => $post]);
+        return view('posts.edit',['post' => $post,'id' =>$id]);
     }
 
     /**
@@ -82,7 +82,7 @@ class postController extends Controller
      * @param  \App\post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, post $post)
+    public function update(Request $request)
     {
         $id = $request->post_id;
 
@@ -103,9 +103,9 @@ class postController extends Controller
      * @param  \App\post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(post $post)
+    public function destroy($id)
     {
-        $post = \App\Post::find($id);
+        $post = Post::find($id);
         // 削除
         $post->delete();
         
