@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,16 +13,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('posts', 'PostController@index');
-Route::get('posts/{id}', 'PostController@show');
-Route::get('post/create', 'PostController@create');
-Route::post('posts', 'PostController@store');
+Route::get('/', 'HomeController@index')->name('home');
+Route::resource('posts', 'PostController', ['only' => ['index','show', 'create', 'store']]);
 Route::get('posts/edit/{id}', 'PostController@edit');
 Route::post('posts/edit', 'PostController@update');
 Route::post('posts/delete/{id}', 'PostController@destroy');

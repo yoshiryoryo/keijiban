@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\post;
+use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
-class postController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -51,12 +53,12 @@ class postController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\post  $post
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(post $post)
+    public function show(Post $post)
     {
-        $user_id = $post->user_id;
+        $usr_id = $post->user_id;
         $user = DB::table('users')->where('id', $usr_id)->first();
 
         return view('posts.detail',['post' => $post,'user' => $user]);
@@ -65,7 +67,7 @@ class postController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\post  $post
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -79,7 +81,7 @@ class postController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\post  $post
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
@@ -100,7 +102,7 @@ class postController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\post  $post
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
