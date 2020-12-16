@@ -3,7 +3,7 @@ version: '3'
 services: 
     php:
         container_name: php_laravel
-        build: ./docker/php
+        build: ./
         volumes:
             - ./myapp/:/var/www
     
@@ -25,7 +25,7 @@ services:
             MYSQL_ROOT_PASSWORD: root
             MYSQL_DATABASE: database
             MYSQL_USER: docker
-            MYSQL_PASSWORD: docker
+            MYSQL_PASSWORD: docker -docker
             TZ: 'Asia/Tokyo'
         command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
         volumes:
