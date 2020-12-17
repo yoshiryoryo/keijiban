@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('posts', 'PostController', ['only' => ['index','show', 'create', 'store']]);
+Route::resource('posts', 'postController', ['only' => ['index','show', 'create', 'store']]);
 Route::get('posts/edit/{id}', 'PostController@edit');
-Route::post('posts/edit', 'PostController@update');
-Route::post('posts/delete/{id}', 'PostController@destroy');
+Route::post('posts/edit', 'postController@update');
+Route::post('posts/delete/{id}', 'postController@destroy');

@@ -19,7 +19,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = post::all();
         return view('posts.index', ['posts' => $posts]);
 
     }
@@ -45,7 +45,7 @@ class PostController extends Controller
     {
         $id = Auth::id();
         //インスタンス作成
-        $post = new Post();
+        $post = new post();
         
         $post->body = $request->body;
         $post->user_id = $id;
@@ -58,7 +58,7 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Post  $post
+     * @param  \App\post  $post
      * @return \Illuminate\Http\Response
      */
     public function show(Post $post)
@@ -73,13 +73,13 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Post  $post
+     * @param  \App\post  $post
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         // $usr_id = $post->user_id;
-        $post = \App\Post::findOrFail($id);
+        $post = \App\post::findOrFail($id);
 
         return view('posts.edit',['post' => $post]);
         // return view('posts.edit');
@@ -90,7 +90,7 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Post  $post
+     * @param  \App\post  $post
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
@@ -98,7 +98,7 @@ class PostController extends Controller
         $id = $request->post_id;
         
         //レコードを検索
-        $post = Post::findOrFail($id);
+        $post = post::findOrFail($id);
         
         $post->body = $request->body;
         
@@ -111,7 +111,7 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Post  $post
+     * @param  \App\post  $post
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
