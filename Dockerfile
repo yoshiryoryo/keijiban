@@ -16,18 +16,6 @@ RUN php -r "if (hash_file('sha384', 'composer-setup.php') === '756890a4488ce9024
 RUN php composer-setup.php
 RUN php -r "unlink('composer-setup.php');"
 
-#firebase install
-RUN npm install -g firebase-tools
-
-# settings for runtime emulator
-ENV HOST 0.0.0.0
-EXPOSE 5000
-
-# settings for Firebase login
-EXPOSE 9005
-
-
-
 RUN mv composer.phar /usr/local/bin/composer
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
