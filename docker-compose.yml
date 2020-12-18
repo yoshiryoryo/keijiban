@@ -33,7 +33,7 @@ services:
             - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
             - ./docker/db/sql:/docker-entrypoint-initdb.d
         ports:
-            - 7306:3306
+            - :3306
             
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
@@ -46,6 +46,6 @@ services:
         links:
             - db
         ports:
-            - 7180:80
+            - :80
         volumes:
             - /sessions
